@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getPersons from "../api/persons";
 import { IPerson } from "../models/Person";
-import petConstants from "../utils/constants";
+import SimpleList from "./SimpleList";
 
 const Pets = (props: any) => {
   const gender: any = {
@@ -57,19 +57,11 @@ const Pets = (props: any) => {
                   <div className="card" style={{ padding: "20px" }}>
                     <div className="card-body">
                       <h4>Male {props.category}</h4>
-                      <ul className="list-group list-group-flush">
-                        {sortPets(pets.male).map((item: any, index: number) => {
-                          console.log(item);
-                          console.log(props.category);
-                          if (item.type === props.category) {
-                            return (
-                              <li className="list-group-item" key={index}>
-                                {item.name}
-                              </li>
-                            );
-                          }
-                        })}
-                      </ul>
+                      <SimpleList
+                        listItems={sortPets(pets.male)}
+                        filterBy={props.category}
+                        sort={true}
+                      />
                     </div>
                   </div>
                 </div>
@@ -77,19 +69,11 @@ const Pets = (props: any) => {
                   <div className="card" style={{ padding: "20px" }}>
                     <div className="card-body">
                       <h4>Female {props.category}</h4>
-                      <ul className="list-group list-group-flush">
-                        {sortPets(pets.female).map(
-                          (item: any, index: number) => {
-                            if (item.type === props.category) {
-                              return (
-                                <li className="list-group-item" key={index}>
-                                  {item.name}
-                                </li>
-                              );
-                            }
-                          }
-                        )}
-                      </ul>
+                      <SimpleList
+                        listItems={sortPets(pets.female)}
+                        filterBy={props.category}
+                        sort={true}
+                      />
                     </div>
                   </div>
                 </div>
